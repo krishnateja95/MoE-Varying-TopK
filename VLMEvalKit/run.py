@@ -130,17 +130,16 @@ You can launch the evaluation by setting either --data and --model or --config.
     parser.add_argument('--model', type=str, nargs='+', help='Names of Models')
     parser.add_argument('--config', type=str, help='Path to the Config Json File')
     
-    #KV cache compression
-    parser.add_argument('--image_budget', type=int, default=None, help='Image KV Cache Token budget')
-    parser.add_argument('--language_budget', type=int, default=None, help='Language KV Cache Token budget')
-    parser.add_argument('--evict_method', type=str, default="baseline", help='KV Cache eviction method')
+    parser.add_argument('--topk', type=int, default=None, help='Topk value in MoE')
+    parser.add_argument('--method', type=str, default="baseline", help='Topk method')
 
     parser.add_argument('--saveresults', action='store_true', help='Ignore failed indices. ')
 
     # Work Dir
     parser.add_argument('--work-dir', type=str, default='./outputs', help='select the output directory')
-    parser.add_argument('--cache_dir', type=str, default=None, help='Model Cache')
-    
+    parser.add_argument('--cache_dir', type=str, default='/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_cache/', help='Model Cache')
+
+
     # Infer + Eval or Infer Only
     parser.add_argument('--mode', type=str, default='all', choices=['all', 'infer'])
     # API Kwargs, Apply to API VLMs and Judge API LLMs
@@ -400,24 +399,24 @@ def main():
                     print("eval_results", eval_results)
 
                     if dataset_name in ['ChartQA_TEST', 'InfoVQA_VAL', 'SEEDBench', 'MMBench', 'AI2D_TEST', 'TextVQA_VAL', 'DocVQA_VAL']:
-                        list_2 = [args.model[0], dataset_name, args.image_budget, args.language_budget, args.evict_method, round(float(eval_results['Overall']), 3) ]    
+                        list_2 = [args.model[0], dataset_name, args.topk, args.method, round(float(eval_results['Overall']), 3) ]    
                         unified_list = [list_2]
 
                     elif dataset_name in ["AI2D_TEST_NO_MASK", "BLINK", "RealWorldQA", "ScienceQA_VAL"]:
-                        list_2 = [args.model[0], dataset_name, args.image_budget, args.language_budget, args.evict_method, round(float(eval_results['Overall']*100),3) ]    
+                        list_2 = [args.model[0], dataset_name, args.topk, args.method, round(float(eval_results['Overall']*100),3) ]    
                         unified_list = [list_2]
 
                     
                     elif dataset_name in ["MMMU_DEV_VAL"]:
-                        list_2 = [args.model[0], dataset_name, args.image_budget, args.language_budget, args.evict_method, round(float(eval_results["Overall"][1]*100), 3) ]    
+                        list_2 = [args.model[0], dataset_name, args.topk, args.method, round(float(eval_results["Overall"][1]*100), 3) ]    
                         unified_list = [list_2]
 
                     elif 'MME' == dataset_name:
-                        list_2 = [args.model[0], "MME-perception", args.image_budget, args.language_budget, args.evict_method, float(eval_results['perception']) ]    
-                        list_3 = [args.model[0], "MME-reasoning",  args.image_budget, args.language_budget, args.evict_method, float(eval_results['reasoning'])  ]    
+                        list_2 = [args.model[0], "MME-perception", args.topk, args.method, float(eval_results['perception']) ]    
+                        list_3 = [args.model[0], "MME-reasoning",  args.topk, args.method, float(eval_results['reasoning'])  ]    
                         unified_list = [list_2, list_3]
 
-                    list_1 = ["Model", "dataset", 'image_budget', 'language_budget', 'evict_method', "Overall"]
+                    list_1 = ["Model", "dataset", 'topk', 'method', "Overall"]
 
                     assert len(list_1) == len(list_2)
 

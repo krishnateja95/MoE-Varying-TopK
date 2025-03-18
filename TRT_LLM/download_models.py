@@ -1,13 +1,11 @@
 
-cache_dir = '/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_cache/'
 
-# from transformers import AutoTokenizer, AutoModelForCausalLM
-# tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3.5-MoE-instruct", trust_remote_code=True, cache_dir = cache_dir)
-# model = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3.5-MoE-instruct", trust_remote_code=True, cache_dir = cache_dir)
-
-# Load model directly
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
+cache_dir = '/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_cache/'
+
+tokenizer = AutoTokenizer.from_pretrained("microsoft/Phi-3.5-MoE-instruct", trust_remote_code=True, cache_dir = cache_dir)
+model = AutoModelForCausalLM.from_pretrained("microsoft/Phi-3.5-MoE-instruct", trust_remote_code=True, cache_dir = cache_dir)
 
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mixtral-8x7B-Instruct-v0.1", cache_dir = cache_dir)
 model = AutoModelForCausalLM.from_pretrained("mistralai/Mixtral-8x7B-Instruct-v0.1", cache_dir = cache_dir)

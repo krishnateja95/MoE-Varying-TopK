@@ -47,7 +47,7 @@ def split_model(model_name):
     num_layers_per_gpu = model_splits[model_name]
     num_layers =  sum(num_layers_per_gpu)
     layer_cnt = 0
-    for i, num_layer in enumerate(num_layers_per_gpu):
+    for i, num_layer in enumerate(num_layers_per_gpu): 
         for j in range(num_layer):
             device_map[f'language.model.layers.{layer_cnt}'] = i
             layer_cnt += 1
@@ -61,6 +61,13 @@ def split_model(model_name):
     device_map[f'language.model.layers.{num_layers - 1}'] = 0
     return device_map
 
+model_proxy = {
+    'deepseek-ai/deepseek-vl2-tiny': "deepseek_vl2_tiny",
+    'deepseek-ai/deepseek-vl2-small': "deepseek_vl2_small",
+    'deepseek-ai/deepseek-vl2': "deepseek_vl2"
+            }
+
+
 class DeepSeekVL2(BaseModel):
 
     INSTALL_REQ = True
@@ -72,147 +79,18 @@ class DeepSeekVL2(BaseModel):
         self.model_path = model_path
         self.device_map = split_model(model_path)
 
-        if args.model_precision == "uniform_quant":
+        from .deepseek_model.processing_deepseek_vl_v2 import DeepseekVLV2Processor
+        from .deepseek_model.modeling_deepseek_vl_v2 import DeepseekVLV2ForCausalLM
 
-            if args.quant_format == "hqq":
-                from .deepseek_model.processing_deepseek_vl_v2 import DeepseekVLV2Processor
-                from .DeepSeek_VL2_HQQ.modeling_deepseek_vl_v2 import DeepseekVLV2ForCausalLM
+        self.vl_chat_processor = DeepseekVLV2Processor.from_pretrained(model_path, cache_dir=args.cache_dir)
+        self.tokenizer = self.vl_chat_processor.tokenizer
 
-                self.vl_chat_processor = DeepseekVLV2Processor.from_pretrained(model_path)
-                self.tokenizer = self.vl_chat_processor.tokenizer
-
-                self.model = DeepseekVLV2ForCausalLM.from_pretrained(model_path,
-                                                                trust_remote_code=True,
-                                                                torch_dtype=torch.bfloat16,
-                                                                device_map = self.device_map,
-                                                                cache_dir = '/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_cache/')
-                
-                self.model.quantize_experts(nbits = args.bits, group_size = 64, quant_config_dict = None)
-
-                # model_proxy = {
-                #     'deepseek-ai/deepseek-vl2-tiny': "deepseek_vl2_tiny",
-                #     'deepseek-ai/deepseek-vl2-small': "deepseek_vl2_small",
-                #     'deepseek-ai/deepseek-vl2': "deepseek_vl2"
-                # }
-                
-                # self.model, self.vl_chat_processor, self.tokenizer = quantized_model(bits = args.bits,
-                #                                                                     model_name=model_path,
-                #                                                                     format=args.quant_format,
-                #                                                                     device_map=self.device_map,
-                #                                                                     )
-
-                # print(self.model)
-                # exit()
-
-
-            else:
-
-                torch.set_grad_enabled(True)
-                torch.enable_grad()
-
-                model_proxy = {
-                    'deepseek-ai/deepseek-vl2-tiny': "deepseek_vl2_tiny",
-                    'deepseek-ai/deepseek-vl2-small': "deepseek_vl2_small",
-                    'deepseek-ai/deepseek-vl2': "deepseek_vl2"
-                }
-                
-                from .deepseek_vl2_quant import quantized_model
-                self.model, self.vl_chat_processor, self.tokenizer = quantized_model(bits = args.bits,
-                                                                                    model_name=model_path,
-                                                                                    format=args.quant_format,
-                                                                                    device_map=self.device_map,
-                                                                                    )
-
-                
-                print(self.model)
-                torch.set_grad_enabled(False)
-
-            if "tiny" in model_path:
-                self.model = self.model.cuda()
-            
-            else:
-                self.model = dispatch_model(self.model, device_map=self.device_map)
-                
-            if args.quant_format == "hqq":
-                self.model = self.model.to(torch.bfloat16).eval()
-            else:
-                self.model = self.model.to(torch.bfloat16).eval()
-
-        elif args.model_precision == "mixed_precision":
-             
-            torch.set_grad_enabled(True)
-            torch.enable_grad()
-
-            model_proxy = {
-                'deepseek-ai/deepseek-vl2-tiny': "deepseek_vl2_tiny",
-                'deepseek-ai/deepseek-vl2-small': "deepseek_vl2_small",
-                'deepseek-ai/deepseek-vl2': "deepseek_vl2"
-            }
-
-            if args.assignment == "per_layer":
-                dir = "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/github_MoE_Mixed_precision_NAS/MoE-Mixed-Prec/VLMEvalKit/vlmeval/vlm/DeepSeek_VL2/json_files/"
-                json_file = dir  + f"{model_proxy[model_path]}_{args.assignment}_importance_{args.importance}_n_clusters_{args.n_clusters}_mixed_precision_quant.json"
-
-
-            elif args.assignment == "per_model":
-                dir = "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/github_MoE_Mixed_precision_NAS/MoE-Mixed-Prec/VLMEvalKit/vlmeval/vlm/DeepSeek_VL2/json_files/"
-                json_file = dir  + f"{model_proxy[model_path]}_per_model_{args.importance}_n_clusters_{args.n_clusters}_mixed_precision_quant.json"
-
-            from .deepseek_vl2_quant import quantized_model
-            self.model, self.vl_chat_processor, self.tokenizer = quantized_model(bits = args.bits,
-                                                                                 model_name=model_path,
-                                                                                 format=args.quant_format,
-                                                                                 device_map=self.device_map,
-                                                                                 json_file = json_file, 
-                                                                                 )
-
-            
-            print(self.model)
-            torch.set_grad_enabled(False)
-            
-            if "tiny" in model_path:
-                self.model = self.model.cuda()
-            
-            else:
-                self.model = dispatch_model(self.model, device_map=self.device_map)
-            
-            if args.quant_format == "hqq":
-                self.model = self.model.to(torch.bfloat16).eval()
-            else:
-                self.model = self.model.to(torch.bfloat16).eval()
-
-
-        elif args.model_precision == "activation_frequency_profiling":
-            from .DeepSeek_VL2_quant.modeling_deepseek_vl_v2 import DeepseekVLV2ForCausalLM
-            from .DeepSeek_VL2_quant.processing_deepseek_vl_v2 import DeepseekVLV2Processor
-
-            self.vl_chat_processor = DeepseekVLV2Processor.from_pretrained(model_path)
-            self.tokenizer = self.vl_chat_processor.tokenizer
-
-            self.model = DeepseekVLV2ForCausalLM.from_pretrained(model_path,
-                                                                trust_remote_code=True,
-                                                                torch_dtype=torch.bfloat16,
-                                                                device_map = self.device_map,
-                                                                cache_dir = '/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_cache/')
-            
-        elif args.model_precision == "fp_baseline":
-            from .deepseek_model.processing_deepseek_vl_v2 import DeepseekVLV2Processor
-            from .deepseek_model.modeling_deepseek_vl_v2 import DeepseekVLV2ForCausalLM
-
-            self.vl_chat_processor = DeepseekVLV2Processor.from_pretrained(model_path)
-            self.tokenizer = self.vl_chat_processor.tokenizer
-
-            self.model = DeepseekVLV2ForCausalLM.from_pretrained(model_path,
-                                                            trust_remote_code=True,
-                                                            torch_dtype=torch.bfloat16,
-                                                            device_map = self.device_map,
-                                                            cache_dir = '/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_cache/')
-            # print(model.hf_device_map)
-            # print(model.image_newline.device)
-            # print(model.device)
-            # exit()
-            # self.model = model.cuda().eval()
-        
+        self.model = DeepseekVLV2ForCausalLM.from_pretrained(model_path,
+                                                             trust_remote_code=True,
+                                                             torch_dtype=torch.bfloat16,
+                                                             device_map = self.device_map,
+                                                             num_experts_per_tok = args.topk,
+                                                             cache_dir = '/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_cache/')
         self.model = self.model.eval()
 
         torch.cuda.empty_cache()

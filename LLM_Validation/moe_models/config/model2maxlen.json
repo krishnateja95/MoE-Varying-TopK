@@ -1,8 +1,0 @@
-{
-    "Qwen1.5-MoE-A2.7B-Chat": 31500,
-    "Mixtral-8x7B-Instruct-v0.1": 31500,
-    "Phi-3.5-MoE-instruct": 130572,
-    "DeepSeek-V2-Lite-Chat": 163340,
-    "DeepSeek-V2-Chat-0628": 163340,
-    "OLMoE-1B-7B-0924-Instruct": 4096
-}

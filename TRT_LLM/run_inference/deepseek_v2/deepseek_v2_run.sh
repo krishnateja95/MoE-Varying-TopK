@@ -13,6 +13,8 @@ model_dir="/lus/grand/projects/datascience/krishnat/model_weights/LLaMA/llama_ca
 trt_checkpoint="/lus/grand/projects/datascience/krishnat/home_dir_code/trtllm_model_paths/trt_checkpoints/deepseek_v2_moe/"
 trt_engine="/lus/grand/projects/datascience/krishnat/home_dir_code/trtllm_model_paths/trt_engine/deepseek_v2_moe"
 
+export LD_LIBRARY_PATH="/lus/eagle/projects/datascience/krishnat95/envs/TRT_LLM_TopK/lib"
+
 model_name="deepseek-ai/DeepSeek-V2-Lite-Chat"
 
 TP_size=4

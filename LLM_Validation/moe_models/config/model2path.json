@@ -1,8 +1,0 @@
-{
-    "Qwen1.5-MoE-A2.7B-Chat": "Qwen/Qwen1.5-MoE-A2.7B-Chat",
-    "Mixtral-8x7B-Instruct-v0.1": "mistralai/Mixtral-8x7B-Instruct-v0.1",
-    "Phi-3.5-MoE-instruct": "microsoft/Phi-3.5-MoE-instruct",
-    "DeepSeek-V2-Lite-Chat":"deepseek-ai/DeepSeek-V2-Lite-Chat",
-    "DeepSeek-V2-Chat-0628": "deepseek-ai/DeepSeek-V2-Chat-0628",
-    "OLMoE-1B-7B-0924-Instruct": "allenai/OLMoE-1B-7B-0924-Instruct"
-}

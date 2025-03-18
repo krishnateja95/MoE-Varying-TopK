@@ -1,0 +1,138 @@
+
+Lmod is automatically replacing "nvhpc/23.9" with "gcc-native/12.3".
+
+
+Lmod is automatically replacing "PrgEnv-nvhpc/8.5.0" with "PrgEnv-gnu/8.5.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) cray-mpich/8.1.28
+
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_1_method_baseline/qmsum.jsonl'
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_2_method_baseline/qmsum.jsonl'
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_4_method_baseline/qmsum.jsonl'
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_6_method_baseline/qmsum.jsonl'
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_8_method_baseline/qmsum.jsonl'
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_16_method_baseline/qmsum.jsonl'
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_32_method_baseline/qmsum.jsonl'
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/pred_v1_main.py", line 34, in <module>
+    data = load_dataset('THUDM/LongBench', f"{args.dataset}_e", split='test', cache_dir=cache_dir)
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 2129, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/load.py", line 1886, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 342, in __init__
+    self.config, self.config_id = self._create_builder_config(
+  File "/lus/eagle/projects/datascience/krishnat95/envs/Dynamic_NAS/lib/python3.10/site-packages/datasets/builder.py", line 569, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'qmsum_e' not found. Available: ['2wikimqa', '2wikimqa_e', 'dureader', 'gov_report', 'gov_report_e', 'hotpotqa', 'hotpotqa_e', 'lcc', 'lcc_e', 'lsht', 'multi_news', 'multi_news_e', 'multifieldqa_en', 'multifieldqa_en_e', 'multifieldqa_zh', 'musique', 'narrativeqa', 'passage_count', 'passage_count_e', 'passage_retrieval_en', 'passage_retrieval_en_e', 'passage_retrieval_zh', 'qasper', 'qasper_e', 'qmsum', 'repobench-p', 'repobench-p_e', 'samsum', 'samsum_e', 'trec', 'trec_e', 'triviaqa', 'triviaqa_e', 'vcsum']
+Traceback (most recent call last):
+  File "/lus/grand/projects/datascience/krishnat/home_dir_code/Active_projects/MoE-Varying-TopK/LongBench/eval.py", line 94, in <module>
+    with open(pred_file, "r", encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'pred_e_v1/DeepSeek-V2-Lite-Chat_topk_64_method_baseline/qmsum.jsonl'

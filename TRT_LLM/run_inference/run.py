@@ -613,6 +613,10 @@ def main(args):
             f"batch_size: {len(batch_input_ids)}, avg latency of {ite} iterations: : {tensorrt_llm.profiler.elapsed_time_in_sec('tmp') / ite} sec"
         )
 
+        exit()
+
+
+
 
 if __name__ == '__main__':
     args = parse_arguments()

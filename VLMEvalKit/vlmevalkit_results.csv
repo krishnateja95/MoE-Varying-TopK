@@ -1,7 +1,0 @@
-Model,dataset,image_budget,language_budget,evict_method,Overall
-Phi-3.5-Vision,MME-perception,,,baseline,1462.908663465386
-Phi-3.5-Vision,MME-reasoning,,,baseline,373.2142857142857
-molmoE-1B-0924,MME-perception,,,baseline,1359.8382352941176
-molmoE-1B-0924,MME-reasoning,,,baseline,267.8571428571429
-Qwen2-VL-2B-Instruct,MME-perception,,,baseline,1449.5227090836333
-Qwen2-VL-2B-Instruct,MME-reasoning,,,baseline,410.0

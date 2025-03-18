@@ -40,25 +40,15 @@ class molmo(BaseModel):
         from .MolmoE.modeling_molmoe import MolmoForCausalLM
         import einops
 
-        if '72b' not in model_path.lower():
-            self.model = MolmoForCausalLM.from_pretrained(
-                model_path,
-                trust_remote_code=True,
-                torch_dtype=torch.bfloat16,
-                device_map='cuda', 
-                cache_dir=args.cache_dir)
-        else:
-            self.model = MolmoForCausalLM.from_pretrained(
-                model_path,
-                trust_remote_code=True,
-                torch_dtype=torch.bfloat16,
-                device_map='auto',
-                cache_dir=args.cache_dir)
-            
+        self.model = MolmoForCausalLM.from_pretrained(
+            model_path,
+            trust_remote_code=True,
+            torch_dtype=torch.bfloat16,
+            device_map='auto',
+            cache_dir=args.cache_dir,
+            moe_top_k=args.topk)
         
-        self.model.KV_cache_compression(args.image_budget, args.language_budget, args.evict_method)
-
-        self.processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True, torch_dtype=torch.bfloat16)
+        self.processor = AutoProcessor.from_pretrained(model_path, trust_remote_code=True, torch_dtype=torch.bfloat16, cache_dir=args.cache_dir)
         self.kwargs = kwargs
         self.model_name = model_path
         # set default maximum number of crops to 36

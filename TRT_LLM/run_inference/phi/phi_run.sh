@@ -24,7 +24,7 @@ for precision in "float16"; do
     python convert_checkpoint.py --workers=1 --tp_size=$TP_size --moe_tp_size=$MoE_TP_size --moe_ep_size=$MoE_EP_size --model_dir=$model_dir --output_dir=$trt_checkpoint --dtype=$precision
     for batch_size in 128; do
         for input_output_length in 4096; do
-            trtllm-build --workers=1 --checkpoint_dir=$trt_checkpoint --output_dir=$trt_engine --gemm_plugin=$precision --gpt_attention_plugin=$precision --max_batch_size=$batch_size --max_input_len=$input_output_length --max_output_len=$input_output_length
+            trtllm-build --workers=1 --checkpoint_dir=$trt_checkpoint --output_dir=$trt_engine --gemm_plugin=$precision --gpt_attention_plugin=$precision --max_batch_size=$batch_size --max_input_len=$input_output_length
             mpirun --oversubscribe -np $TP_size python3 ../run.py --model_name=$model_name --tokenizer_dir=$model_dir --engine_dir=$trt_engine --max_output_len=$input_output_length --max_input_length=$input_output_length --run_profiling --batch_size=$batch_size 
         done
     done

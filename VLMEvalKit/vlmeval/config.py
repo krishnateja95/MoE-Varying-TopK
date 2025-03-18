@@ -3,8 +3,8 @@ from functools import partial
 
 molmo_series={
     'molmoE-1B-0924': partial(molmo, model_path='allenai/MolmoE-1B-0924'),
-    'molmo-7B-D-0924': partial(molmo, model_path='allenai/Molmo-7B-D-0924'),
-    'molmo-7B-O-0924': partial(molmo, model_path='allenai/Molmo-7B-O-0924'),
+    # 'molmo-7B-D-0924': partial(molmo, model_path='allenai/Molmo-7B-D-0924'),
+    # 'molmo-7B-O-0924': partial(molmo, model_path='allenai/Molmo-7B-O-0924'),
 }
 
 llama_series={
